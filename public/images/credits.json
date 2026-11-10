@@ -1,0 +1,45 @@
+{
+  "license": "https://unsplash.com/license",
+  "images": [
+    {
+      "file": "stock/architecture-hero.jpg",
+      "creator": "Sean Pollock",
+      "source": "https://unsplash.com/photos/PhYq704ffdA",
+      "usage": "Illustrative architecture"
+    },
+    {
+      "file": "stock/ventilation-detail.jpg",
+      "creator": "Vlad Deep",
+      "source": "https://unsplash.com/photos/WTt_UxmqGj8",
+      "usage": "Illustrative HVAC"
+    },
+    {
+      "file": "stock/industrial-ductwork.jpg",
+      "creator": "Dmytro G",
+      "source": "https://unsplash.com/photos/w050h1XJL5w",
+      "usage": "Illustrative ductwork"
+    },
+    {
+      "file": "stock/staff-placeholder-1.jpg",
+      "creator": "Albert Dera",
+      "source": "https://unsplash.com/photos/ILip77SbmOE",
+      "usage": "Placeholder portrait, not employee"
+    },
+    {
+      "file": "stock/staff-placeholder-2.jpg",
+      "creator": "Christopher Campbell",
+      "source": "https://unsplash.com/photos/rDEOVtE7vOs",
+      "usage": "Placeholder portrait, not employee"
+    },
+    {
+      "file": "stock/staff-placeholder-3.jpg",
+      "creator": "Joseph Gonzalez",
+      "source": "https://unsplash.com/photos/iFgRcqHznqg",
+      "usage": "Placeholder portrait, not employee"
+    }
+  ],
+  "legacy": {
+    "source": "https://vikomakss.lv/lv/lielie-projekti",
+    "usage": "Original project photos reused at the user’s request for a local first version; not royalty-free stock."
+  }
+}
