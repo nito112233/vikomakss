@@ -89,6 +89,7 @@ return [
                     'Gaisa vadu un iekārtu montāža',
                     'Sistēmu regulēšana un nodošana ekspluatācijā',
                 ],
+                'image_alt' => 'Metāla ventilācijas gaisa vadi ēkas interjerā',
             ],
             'cooling' => [
                 'name' => 'Kondicionēšana',
@@ -99,6 +100,7 @@ return [
                     'Ēku aukstumapgādes risinājumi',
                     'Iekārtu uzstādīšana un ieregulēšana',
                 ],
+                'image_alt' => 'Pie sienas uzstādīta kondicionēšanas iekārta',
             ],
             'design' => [
                 'name' => 'Projektēšana',
@@ -109,6 +111,7 @@ return [
                     'Apkures sistēmu projektēšana',
                     'Tehnisko risinājumu saskaņošana',
                 ],
+                'image_alt' => 'Projektētāja darba galds ar tehniskajiem rasējumiem un rasēšanas piederumiem',
             ],
             'maintenance' => [
                 'name' => 'Serviss un apkope',
@@ -119,6 +122,7 @@ return [
                     'Sistēmu pārbaude un diagnostika',
                     'Darbības regulēšana un uzturēšana',
                 ],
+                'image_alt' => 'Ventilācijas un dzesēšanas sistēmu tehniskais aprīkojums',
             ],
         ],
         'steps' => [
@@ -152,6 +156,8 @@ return [
         'public' => 'Sabiedriskās ēkas',
         'commercial' => 'Komerctelpas',
         'hospitality' => 'Viesnīcas',
+        'residential' => 'Dzīvojamās ēkas',
+        'industrial' => 'Ražošanas ēkas',
     ],
     'projects' => [
         'eyebrow' => 'MŪSU PIEREDZE',
@@ -167,6 +173,8 @@ return [
         'source' => 'Dati un attēls no Vikomakss projektu arhīva.',
         'related' => 'Vēl no mūsu pieredzes',
         'archive' => 'Izlase no projektu arhīva',
+        'open' => 'Atvērt projektu: :project',
+        'close' => 'Aizvērt projektu',
     ],
     'about' => [
         'eyebrow' => 'PAR VIKOMAKSS',

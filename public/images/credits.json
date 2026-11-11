@@ -36,6 +36,20 @@
       "creator": "Joseph Gonzalez",
       "source": "https://unsplash.com/photos/iFgRcqHznqg",
       "usage": "Placeholder portrait, not employee"
+    },
+    {
+      "file": "stock/air-conditioning.jpg",
+      "creator": "NEOSiAM 18+",
+      "source": "https://www.pexels.com/photo/wall-mounted-air-conditioner-in-modern-interior-38788452/",
+      "license": "https://www.pexels.com/license/",
+      "usage": "Illustrative indoor air conditioning equipment"
+    },
+    {
+      "file": "stock/engineering-workspace.jpg",
+      "creator": "Tima Miroshnichenko",
+      "source": "https://www.pexels.com/photo/person-people-building-desk-6615230/",
+      "license": "https://www.pexels.com/license/",
+      "usage": "Illustrative design workspace with technical plans and drafting tools"
     }
   ],
   "legacy": {

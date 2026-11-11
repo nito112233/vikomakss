@@ -36,6 +36,23 @@ class Project extends Model
         return $values[$locale ?? app()->getLocale()] ?? $values['lv'] ?? '';
     }
 
+    public function locationLabel(): string
+    {
+        if ($this->location === 'Rīga') {
+            return __('site.common.riga');
+        }
+
+        if (app()->getLocale() === 'en') {
+            return strtr($this->location, [
+                'Stokholma' => 'Stockholm',
+                'Zviedrija' => 'Sweden',
+                'Salaspils novads' => 'Salaspils Municipality',
+            ]);
+        }
+
+        return $this->location;
+    }
+
     public function scopePublished(Builder $query): void
     {
         $query->whereNotNull('published_at')->where('published_at', '<=', now());

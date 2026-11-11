@@ -8,6 +8,7 @@
         @case('mail') <rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/> @break
         @case('pin') <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/> @break
         @case('menu') <path d="M4 7h16M4 12h16M4 17h16"/> @break
+        @case('expand') <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/> @break
         @case('close') <path d="m6 6 12 12M6 18 18 6"/> @break
         @case('check') <path d="m5 12 4 4L19 6"/> @break
         @case('ventilation') <path d="M3 8h12a3 3 0 1 0-3-3M3 12h16a3 3 0 1 1-3 3M3 16h5a3 3 0 1 1-3 3"/> @break

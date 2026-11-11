@@ -52,43 +52,51 @@ class PublicWebsiteTest extends TestCase
             ->assertDontSee('Neatlasīts projekts');
     }
 
-    public function test_project_filters_only_return_published_projects_in_the_selected_category(): void
+    public function test_portfolio_shows_all_published_projects_without_category_filters(): void
     {
         $this->freezeTime();
         Project::factory()->create(['category' => 'hospitality', 'title' => ['lv' => 'Viesnīcas projekts']]);
         Project::factory()->create(['category' => 'public', 'title' => ['lv' => 'Biroja projekts']]);
-        Project::factory()->draft()->create(['category' => 'hospitality', 'title' => ['lv' => 'Viesnīcas melnraksts']]);
+        Project::factory()->draft()->create(['title' => ['lv' => 'Nepublicēts projekts']]);
 
         $this->get('/projekti?category=hospitality')
             ->assertOk()
             ->assertSee('Viesnīcas projekts')
-            ->assertDontSee('Biroja projekts')
-            ->assertDontSee('Viesnīcas melnraksts')
-            ->assertSee('href="'.route('en.projects', ['category' => 'hospitality']).'"', false);
+            ->assertSee('Biroja projekts')
+            ->assertDontSee('Nepublicēts projekts')
+            ->assertDontSee('class="filter-nav"', false)
+            ->assertDontSee('project-card-category');
     }
 
-    public function test_project_details_are_translated_and_language_switch_preserves_the_project(): void
+    public function test_project_modal_content_is_translated_and_has_the_correct_location(): void
     {
         $this->freezeTime();
         $project = Project::factory()->create([
             'slug' => 'sample-project',
             'title' => ['lv' => 'Projekta nosaukums', 'en' => 'Translated project name'],
+            'description' => ['lv' => 'Projekta apraksts', 'en' => 'Translated project description'],
+            'location' => 'Stokholma, Zviedrija',
             'area' => 2390,
         ]);
 
-        $this->get('/en/projects/sample-project')
+        $this->get('/en/projects')
             ->assertOk()
             ->assertSee('Translated project name')
+            ->assertSee('Translated project description')
+            ->assertSee('Stockholm, Sweden')
             ->assertSee('2 390')
-            ->assertSee('href="'.route('lv.projects.show', $project).'"', false)
+            ->assertSee('data-project-open="project-content-'.$project->id.'"', false)
+            ->assertSee('aria-haspopup="dialog"', false)
+            ->assertDontSee('/en/projects/sample-project')
             ->assertDontSee('Projekta nosaukums');
     }
 
-    public function test_draft_project_details_are_not_public(): void
+    public function test_projects_do_not_have_individual_pages(): void
     {
-        $project = Project::factory()->draft()->create();
+        Project::factory()->create(['slug' => 'sample-project']);
 
-        $this->get('/projekti/'.$project->slug)->assertNotFound();
+        $this->get('/projekti/sample-project')->assertNotFound();
+        $this->get('/en/projects/sample-project')->assertNotFound();
     }
 
     public function test_future_projects_are_not_public(): void
@@ -99,14 +107,13 @@ class PublicWebsiteTest extends TestCase
             'title' => ['lv' => 'Nākotnes projekts', 'en' => 'Future project'],
         ]);
 
-        $this->get('/projekti/'.$project->slug)->assertNotFound();
-        $this->get('/projekti')->assertDontSee('Nākotnes projekts');
+        $this->get('/projekti')->assertOk()->assertDontSee('Nākotnes projekts');
     }
 
-    public function test_unknown_or_array_project_categories_return_not_found(): void
+    public function test_obsolete_category_queries_are_ignored(): void
     {
-        $this->get('/projekti?category=unknown')->assertNotFound();
-        $this->get('/projekti?category[]=public')->assertNotFound();
+        $this->get('/projekti?category=unknown')->assertOk();
+        $this->get('/projekti?category[]=public')->assertOk();
     }
 
     public function test_project_seeder_can_be_run_again_without_duplicates(): void
@@ -114,6 +121,20 @@ class PublicWebsiteTest extends TestCase
         $this->seed(ProjectSeeder::class);
         $this->seed(ProjectSeeder::class);
 
-        $this->assertDatabaseCount('projects', 6);
+        $this->assertDatabaseCount('projects', 27);
+    }
+
+    public function test_archive_import_preserves_existing_project_edits(): void
+    {
+        $existing = Project::factory()->create([
+            'slug' => 'national-library',
+            'title' => ['lv' => 'Saglabāts nosaukums', 'en' => 'Preserved title'],
+        ]);
+
+        $this->seed(ProjectSeeder::class);
+
+        $this->assertSame('Saglabāts nosaukums', $existing->fresh()->translation('title', 'lv'));
+        $this->assertDatabaseCount('projects', 27);
+        $this->assertDatabaseHas('projects', ['slug' => 'ministru-kabinets', 'cooling' => 55]);
     }
 }

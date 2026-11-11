@@ -10,7 +10,6 @@ foreach (['lv' => ['', 'pakalpojumi', 'projekti', 'par-mums', 'kontakti'], 'en' 
         Route::get('/', [PageController::class, 'home'])->name('home');
         Route::get($paths[1], [PageController::class, 'services'])->name('services');
         Route::get($paths[2], [ProjectController::class, 'index'])->name('projects');
-        Route::get($paths[2].'/{project:slug}', [ProjectController::class, 'show'])->name('projects.show');
         Route::get($paths[3], [PageController::class, 'about'])->name('about');
         Route::get($paths[4], [PageController::class, 'contact'])->name('contact');
     });

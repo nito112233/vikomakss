@@ -89,6 +89,7 @@ return [
                     'Ductwork and equipment installation',
                     'System balancing and commissioning',
                 ],
+                'image_alt' => 'Metal ventilation ducts in a building interior',
             ],
             'cooling' => [
                 'name' => 'Air conditioning',
@@ -99,6 +100,7 @@ return [
                     'Building cooling solutions',
                     'Equipment installation and adjustment',
                 ],
+                'image_alt' => 'Wall-mounted air conditioning unit',
             ],
             'design' => [
                 'name' => 'Engineering design',
@@ -109,6 +111,7 @@ return [
                     'Heating system design',
                     'Technical solution coordination',
                 ],
+                'image_alt' => 'Design workspace with technical plans and drafting tools',
             ],
             'maintenance' => [
                 'name' => 'Service & maintenance',
@@ -119,6 +122,7 @@ return [
                     'System checks and diagnostics',
                     'Adjustment and ongoing support',
                 ],
+                'image_alt' => 'Technical ventilation and cooling equipment',
             ],
         ],
         'steps' => [
@@ -152,6 +156,8 @@ return [
         'public' => 'Public buildings',
         'commercial' => 'Commercial',
         'hospitality' => 'Hotels',
+        'residential' => 'Residential buildings',
+        'industrial' => 'Industrial buildings',
     ],
     'projects' => [
         'eyebrow' => 'OUR EXPERIENCE',
@@ -167,6 +173,8 @@ return [
         'source' => 'Data and photograph from the Vikomakss project archive.',
         'related' => 'More of our experience',
         'archive' => 'Selected archive projects',
+        'open' => 'Open project: :project',
+        'close' => 'Close project',
     ],
     'about' => [
         'eyebrow' => 'ABOUT VIKOMAKSS',

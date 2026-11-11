@@ -17,19 +17,19 @@ been added to the admin panel.
 | Contact | `/kontakti` | `/en/contact` |
 
 Projects are stored in MySQL with translated JSON text fields, real archive photos,
-optional technical data, categories and publication status. Each project has a detail
-page. Category filters are normal links and work without JavaScript. Language
-switching preserves the current page/project and selected category.
+optional technical data, categories and publication status. Projects open in an accessible, translated modal without leaving the current page.
+There are no category filters or separate project pages. Language switching
+preserves the current main page.
 
-Six sample projects from the old website are already seeded. On a fresh checkout:
+All 27 projects from the old website’s large-project portfolio are seeded. On a fresh checkout:
 
 ```sh
 valet php artisan migrate
 valet php artisan db:seed --class=ProjectSeeder
 ```
 
-The seeder is repeatable by slug; rerunning it replaces the six sample records with
-the archive data. It does not delete other projects or change admin accounts.
+The seeder is repeatable by slug and only creates missing records. It preserves
+existing project edits, other projects, and admin accounts.
 
 - Page templates: `resources/views/pages/`.
 - Shared header/footer: `resources/views/layouts/site.blade.php`.
@@ -117,7 +117,7 @@ npm run build
 ```
 
 The tests cover all public pages in both languages, published project visibility,
-category filters, translated project details, repeatable seeding, and admin access. Automated tests use a
+translated project modal content, repeatable archive imports, and admin access. Automated tests use a
 separate in-memory SQLite database as configured in `phpunit.xml`; they do not
 reset the local MySQL database. The MySQL connection and migrations can be checked
 with `db:show`, `migrate:status`, and phpMyAdmin.

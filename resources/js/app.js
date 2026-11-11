@@ -21,7 +21,7 @@ document.addEventListener('click', (event) => {
     if (header && !header.contains(event.target)) setMenu(false);
 });
 navigation?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
-window.matchMedia('(min-width: 761px)').addEventListener('change', () => setMenu(false));
+window.matchMedia('(min-width: 1001px)').addEventListener('change', () => setMenu(false));
 const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 25);
 window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
@@ -37,4 +37,36 @@ enquiry?.addEventListener('submit', (event) => {
         return `${title}: ${fields.get(input.name) || '—'}`;
     }).join('\n\n');
     window.location.href = `mailto:${enquiry.dataset.email}?subject=${encodeURIComponent(enquiry.dataset.subject)}&body=${encodeURIComponent(body)}`;
+});
+
+const projectDialog = document.querySelector('[data-project-dialog]');
+const projectContent = projectDialog?.querySelector('[data-project-content]');
+let projectTrigger = null;
+
+function closeProject() {
+    projectDialog?.close();
+}
+
+document.querySelectorAll('[data-project-open]').forEach((button) => {
+    button.addEventListener('click', () => {
+        const template = document.getElementById(button.dataset.projectOpen);
+        if (!template || !projectDialog || !projectContent) return;
+        projectTrigger = button;
+        projectContent.replaceChildren(template.content.cloneNode(true));
+        document.documentElement.classList.add('has-project-dialog');
+        projectDialog.showModal();
+        projectDialog.scrollTop = 0;
+        projectDialog.querySelector('[data-project-close]').focus({ preventScroll: true });
+    });
+});
+projectDialog?.querySelector('[data-project-close]').addEventListener('click', closeProject);
+projectDialog?.addEventListener('click', (event) => {
+    if (event.target !== projectDialog) return;
+    const bounds = projectDialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeProject();
+});
+projectDialog?.addEventListener('close', () => {
+    document.documentElement.classList.remove('has-project-dialog');
+    projectContent.replaceChildren();
+    projectTrigger?.focus({ preventScroll: true });
 });
